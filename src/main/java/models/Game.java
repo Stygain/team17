@@ -29,6 +29,7 @@ public class Game {
 
     public void shuffle() {
         // shuffles the deck so that it is random
+
     }
 
     public void dealFour() {
@@ -41,7 +42,10 @@ public class Game {
 
     private boolean columnHasCards(int columnNumber) {
         // check indicated column for number of cards; if no cards return false, otherwise return true
-        return false;
+        if (this.cols.get(columnNumber).isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     private Card getTopCard(int columnNumber) {
@@ -51,6 +55,9 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
+
+        //cols.get(columnFrom).get(cols.get(columnFrom).size()-1);
+        //cols.get(columnTo).get(cols.get(columnTo).size()+1);
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
