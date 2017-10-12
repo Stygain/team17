@@ -34,6 +34,16 @@ public class Game {
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
+        int cards = this.deck.size();
+        if (cards >= 4){
+            for(int i = 0; i < 4; i++) {
+                this.cols.get(i).remove(this.cols.get(i).size()-1);// remove top card from deck
+                this.cols.get(i).add(this.cols.get(i).size()-1);// adds card to a column
+            }
+        }
+        else{
+            System.out.println("Out of Cards");
+        }
     }
 
     public void remove(int columnNumber) {
