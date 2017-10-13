@@ -78,7 +78,11 @@ public class Game {
 
     public void move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-
+        if (columnHasCards(columnFrom)) {
+            Card temp = getTopCard(columnFrom);
+            this.cols.get(columnFrom).remove(temp);
+            this.cols.get(columnTo).add(temp);
+        }
         //cols.get(columnFrom).get(cols.get(columnFrom).size()-1);
         //cols.get(columnTo).get(cols.get(columnTo).size()+1);
     }
