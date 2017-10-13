@@ -17,7 +17,7 @@ public class Game {
     public Game(){
         // initialize a new game such that each column can store cards
         this.buildDeck();
-        //this.shuffle();
+        this.shuffle();
         //this.dealFour();
     }
 
