@@ -32,32 +32,26 @@ public class Game {
     }
 
     public void shuffle() {
-        System.out.println("Calling shuffle");
         int randomVal;
         Card currCard;
 
         Card newCard;
         for (int i = 0; i < deck.size(); i++){
             randomVal = (int) (Math.random() * 52);
-            System.out.println(randomVal);
             currCard = deck.get(randomVal);
-            System.out.println(currCard);
             newCard = new Card(currCard.getValue(), currCard.getSuit());
             deck.remove(randomVal);
             deck.add(newCard);
         }
         // shuffles the deck so that it is random
-        System.out.println("deck size is " + deck.size());
     }
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
         int cards = this.deck.size();
-        System.out.println("Cards " + cards);
         if (cards >= 4){
             for(int i = 0; i < 4; i++) {
                 Card temp = this.deck.get(this.deck.size()-1);// remove top card from deck
-                System.out.println(temp);
                 this.addCardToCol(i, temp);//add card to column
                 this.deck.remove(temp);//remove top card from deck
             }
