@@ -16,9 +16,9 @@ public class Game {
 
     public Game(){
         // initialize a new game such that each column can store cards
-        this.buildDeck();
-        this.shuffle();
-        //this.dealFour();
+        for (int i = 0; i < 4; i++) {
+            cols.add(new ArrayList<Card>(13));
+        }
     }
 
     public void buildDeck() {
@@ -34,7 +34,6 @@ public class Game {
         int randomVal;
         Card currCard;
         Card newCard;
-
         for (int i = 0; i < deck.size(); i++){
             randomVal = (int) Math.random() * 52;
             currCard = deck.get(randomVal);
@@ -48,8 +47,8 @@ public class Game {
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
-
         int cards = this.deck.size();
+        System.out.println("Cards " + cards);
         if (cards >= 4){
             for(int i = 0; i < 4; i++) {
                 Card temp = this.deck.get(this.deck.size()-1);// remove top card from deck
@@ -92,7 +91,7 @@ public class Game {
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
-        cols.get(columnTo).add(cardToMove);
+        this.cols.get(columnTo).add(cardToMove);
     }
 
     private void removeCardFromCol(int colFrom) {
