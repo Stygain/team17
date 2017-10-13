@@ -51,8 +51,10 @@ public class Game {
         int cards = this.deck.size();
         if (cards >= 4){
             for(int i = 0; i < 4; i++) {
-                this.cols.get(i).remove(this.cols.get(i).size()-1);// remove top card from deck
-                this.cols.get(i).add(this.cols.get(i).size()-1);// adds card to a column
+                //Card temp = this.cols.get(i).get(this.cols.get(i).size()-1);
+                Card temp = this.deck.get(this.deck.size()-1);// remove top card from deck
+                this.deck.remove(temp);
+                this.cols.get(i).add(temp);// adds card to a column
             }
         }
         else{
