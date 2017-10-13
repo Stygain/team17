@@ -28,6 +28,17 @@ public class Game {
     }
 
     public void shuffle() {
+        int randomVal;
+        Card currCard;
+        Card newCard;
+
+        for (int i = 0; i < deck.size(); i++){
+            randomVal = (int) Math.random() * 52;
+            currCard = deck.get(randomVal);
+            newCard = new Card(currCard.getValue(), currCard.getSuit());
+            deck.remove(randomVal);
+            deck.add(newCard);
+        }
         // shuffles the deck so that it is random
 
     }
