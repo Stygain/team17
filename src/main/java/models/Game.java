@@ -37,7 +37,6 @@ public class Game {
         Card currCard;
 
         Card newCard;
-
         for (int i = 0; i < deck.size(); i++){
             randomVal = (int) (Math.random() * 52);
             System.out.println(randomVal);
@@ -53,8 +52,8 @@ public class Game {
 
     public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
-        System.out.println("calling deal4");
         int cards = this.deck.size();
+        System.out.println("Cards " + cards);
         if (cards >= 4){
             for(int i = 0; i < 4; i++) {
                 Card temp = this.deck.get(this.deck.size()-1);// remove top card from deck
@@ -98,7 +97,7 @@ public class Game {
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
-        cols.get(columnTo).add(cardToMove);
+        this.cols.get(columnTo).add(cardToMove);
     }
 
     private void removeCardFromCol(int colFrom) {
