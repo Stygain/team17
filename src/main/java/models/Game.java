@@ -16,6 +16,9 @@ public class Game {
 
     public Game(){
         // initialize a new game such that each column can store cards
+        this.buildDeck();
+        this.shuffle();
+        //this.dealFour();
     }
 
     public void buildDeck() {
@@ -61,6 +64,11 @@ public class Game {
 
     public void remove(int columnNumber) {
         // remove the top card from the indicated column
+        if(columnHasCards(columnNumber)) {
+
+            removeCardFromCol(columnNumber);
+
+        }
     }
 
     private boolean columnHasCards(int columnNumber) {
