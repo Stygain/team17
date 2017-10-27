@@ -1,10 +1,37 @@
 <h1>Aces Up</h1>
-
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 
 <body>
 
+<img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519660-164_QuestionMark-128.png" id="helpBut" />
+<div id="infobox">
+    <h4>General Rules:</h4>
+    <ol>
+        <li>Deal cards with the deal button</li>
+        <li>When a card of the same suit and of lower number is present with a card of the same suit and higher number, the lower number card can be removed</li>
+        <li>When you have an empty column you can choose to move a card there with the move button</li>
+        <li>For more specific rules, consult the <a target="_blank" href="https://en.wikipedia.org/wiki/Aces_Up">wikipedia page</a></li>
+    </ol>
+    <h4>How to Play:</h4>
+    <ul>
+        <li>Hit the deal button to deal four cards to the screen</li>
+        <li>Use the remove button to remove a card from a column</li>
+        <li>Enter the column you want to move a card from, followed by where you want to move it to, and hit the move button to move the cards</li>
+    </ul>
+</div>
+<script type="text/javascript">
+document.getElementById('helpBut').addEventListener("click", function(event) {
+    (function(event) {
+        var x = document.getElementById('infobox');
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }).call(document.getElementById('helpBut'), event);
+});
+</script>
 <table>
     <tr class="title">
         <td>Column0</td>
