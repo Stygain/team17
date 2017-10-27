@@ -41,25 +41,26 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
     </tr>
 
     <tr><td class="columnOfCards" id="c0">
-        <table>
-            <tr><td class="cardLocation l0"></td></tr>
-            <tr><td class="cardLocation l1"></td></tr>
-            <tr><td class="cardLocation l2"></td></tr>
-            <tr><td class="cardLocation l3"></td></tr>
-            <tr><td class="cardLocation l4"></td></tr>
-            <tr><td class="cardLocation l5"></td></tr>
-            <tr><td class="cardLocation l6"></td></tr>
-            <tr><td class="cardLocation l7"></td></tr>
-            <tr><td class="cardLocation l8"></td></tr>
-            <tr><td class="cardLocation l9"></td></tr>
-            <tr><td class="cardLocation l10"></td></tr>
-            <tr><td class="cardLocation l11"></td></tr>
-            <tr><td class="cardLocation l12"></td></tr>
-            <tr><td class="cardLocation l13"></td></tr>
-        </table>
+        <button id="NOTRemove1"><table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+                <tr><td class="cardLocation l11"></td></tr>
+                <tr><td class="cardLocation l12"></td></tr>
+                <tr><td class="cardLocation l13"></td></tr>
+
+            </table></button>
     </td>
         <td class="columnOfCards" id="c1">
-            <table>
+            <button id="Remove2"><table>
                 <tr><td class="cardLocation l0"></td></tr>
                 <tr><td class="cardLocation l1"></td></tr>
                 <tr><td class="cardLocation l2"></td></tr>
@@ -74,10 +75,10 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
-            </table>
+            </table></button>
         </td>
         <td class="columnOfCards" id="c2">
-            <table>
+            <button id="Remove3"><table>
                 <tr><td class="cardLocation l0"></td></tr>
                 <tr><td class="cardLocation l1"></td></tr>
                 <tr><td class="cardLocation l2"></td></tr>
@@ -92,10 +93,10 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
-            </table>
+            </table></button>
         </td>
         <td class="columnOfCards" id="c3">
-            <table>
+            <button id="Remove4"><table>
                 <tr><td class="cardLocation l0"></td></tr>
                 <tr><td class="cardLocation l1"></td></tr>
                 <tr><td class="cardLocation l2"></td></tr>
@@ -110,13 +111,14 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
-            </table>
+            </table></button>
         </td>
     </tr>
 </table>
 
 <button id="dealButton">Deal</button>
-<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>
+
+<!--<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>-->
 
 <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
@@ -186,6 +188,9 @@ dataType:"json",
 
 
 $("#Remove1").click(function(){
+    removeCard(0);
+});
+$("#NOTRemove1").click(function(){
     removeCard(0);
 });
 $("#Remove2").click(function(){
