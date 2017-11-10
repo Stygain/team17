@@ -143,7 +143,7 @@ public class Game {
         return false;
     }
 
-    private void addCardToCol(int columnTo, Card cardToMove) {
+    public void addCardToCol(int columnTo, Card cardToMove) {
         this.cols.get(columnTo).add(cardToMove);
         //cols2.get(0).get(columnTo).addCard(cardToMove);
     }
