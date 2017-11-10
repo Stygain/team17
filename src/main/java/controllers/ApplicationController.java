@@ -37,14 +37,14 @@ public class ApplicationController {
         //System.out.println("I'm past the constructor");
         g.deck.buildDeck();
         g.deck.shuffle();
-        g.deck.dealFour();
+        g.dealFour();
         //System.out.println("I'm at the return statement");
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
-            g.deck.dealFour();
+            g.dealFour();
         }
         return Results.json().render(g);
     }

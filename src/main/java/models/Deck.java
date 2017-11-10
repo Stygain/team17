@@ -36,7 +36,7 @@ public class Deck implements Serializable {
         // shuffles the deck so that it is random
     }
 
-    public void dealFour() {
+/*    public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
         int cards = deck.size();
         System.out.println("The four cards dealt were:");
@@ -61,7 +61,7 @@ public class Deck implements Serializable {
         else{
             System.out.println("Out of Cards");
         }
-    }
+    }*/
 
     public Card getTopCard() {
 
