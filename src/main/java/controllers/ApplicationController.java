@@ -32,10 +32,11 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
+        System.out.println("I'm In gameGet");
         Game g = new Game();
-        //g.buildDeck();
-        //g.shuffle();
-        //g.dealFour();
+        g.deck.buildDeck();
+        g.deck.shuffle();
+        g.dealFour();
 
         return Results.json().render(g);
     }
