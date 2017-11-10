@@ -14,7 +14,7 @@ public class Game {
     //public java.util.List<Card> deck = new ArrayList<>();
 
     //old
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
+    public static java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
 
     //OO update
     //public java.util.List<Column> cols;// = new ArrayList<>(4);
@@ -61,7 +61,7 @@ public class Game {
 //        // shuffles the deck so that it is random
 //    }
 
-    public void dealFour() {
+    /*public void dealFour() {
         // remove the top card from the deck and add it to a column; repeat for each of the four columns
         int cards = deck.getSize();
         if (cards >= 4){
@@ -84,7 +84,7 @@ public class Game {
         else{
             System.out.println("Out of Cards");
         }
-    }
+    }*/
 
     public boolean remove(int columnNumber) {
         // remove the top card from the indicated column
@@ -143,8 +143,8 @@ public class Game {
         return false;
     }
 
-    private void addCardToCol(int columnTo, Card cardToMove) {
-        this.cols.get(columnTo).add(cardToMove);
+    public static void addCardToCol(int columnTo, Card cardToMove) {
+        cols.get(columnTo).add(cardToMove);
         //cols2.get(0).get(columnTo).addCard(cardToMove);
     }
 

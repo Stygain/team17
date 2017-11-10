@@ -32,19 +32,19 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
-        System.out.println("I'm In gameGet");
+        //System.out.println("I'm In gameGet");
         Game g = new Game();
-        System.out.println("I'm past the constructor");
+        //System.out.println("I'm past the constructor");
         g.deck.buildDeck();
         g.deck.shuffle();
-        g.dealFour();
-        System.out.println("I'm at the return statement");
+        g.deck.dealFour();
+        //System.out.println("I'm at the return statement");
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+            g.deck.dealFour();
         }
         return Results.json().render(g);
     }
