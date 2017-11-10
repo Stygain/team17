@@ -61,16 +61,22 @@ public class Game {
         }
     }
 
-    public void remove(int columnNumber) {
+    public boolean remove(int columnNumber) {
         // remove the top card from the indicated column
+        boolean success = false;
         if(columnHasCards(columnNumber)) {
             for (int i = 0; i < 4; i++){
                 if (this.cols.get(i).get(this.cols.get(i).size()-1).suit == this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1).suit &&
                         this.cols.get(i).get(this.cols.get(i).size()-1).value > this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1).value) {
                     removeCardFromCol(columnNumber);
+                    success = true;
                 }
             }
         }
+        if (success) {
+            return true;
+        }
+        return false;
     }
 
     private boolean columnHasCards(int columnNumber) {
@@ -86,15 +92,17 @@ public class Game {
     }
 
 
-    public void move(int columnFrom, int columnTo) {
+    public boolean move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
         if (columnHasCards(columnFrom)) {
             if (columnHasCards(columnTo) == false) {
                 Card temp = getTopCard(columnFrom); //get the top card
                 addCardToCol(columnTo, temp); //add it to the new column
                 removeCardFromCol(columnFrom); //remove from the from column
+                return true;
             }
         }
+        return false;
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
