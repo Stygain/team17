@@ -32,15 +32,17 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
+        System.out.println("calling gameGet");
         Game g = new Game();
         //g.buildDeck();
         //g.shuffle();
         //g.dealFour();
-
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
+
+        System.out.println("calling dealPost");
         if(context.getRequestPath().contains("deal")){
             g.dealFour();
         }
@@ -48,6 +50,8 @@ public class ApplicationController {
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+
+        System.out.println("calling removeCard");
         boolean removed = false;
         removed = g.remove(colNumber);
         if (!removed){
