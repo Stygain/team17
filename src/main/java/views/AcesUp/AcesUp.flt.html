@@ -161,6 +161,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 // Calls ApplicationController.gameGet()
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
+console.log(data);
 game = data;
 });
 
@@ -178,6 +179,14 @@ $.ajax({
 });
 });
 
+function generateCard(cardVal, cardSuit, column){
+var outputS = "<li class=\"card rank-" + cardVal + " " + cardSuit + "\"><span class=\"rank\">" + cardVal + "</span><span class=\"suit\">&" + cardSuit + ";</span></li>"
+var colTo = "c" + column;
+var column = document.getElementById(colTo);
+column.innerHTML = column.innerHTML + outputS;
+return outputS;
+}
+console.log(generateCard(4, "diams", 2));
 
 function removeCard(colNumber){
 $.ajax({

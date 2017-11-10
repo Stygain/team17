@@ -9,18 +9,31 @@ import java.util.Random;
  */
 public class Game {
 
-    Deck deck = new Deck();
+    public Deck deck = new Deck();
 
     //public java.util.List<Card> deck = new ArrayList<>();
 
+    //old
     //public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
-    public java.util.List<Column> cols;// = new ArrayList<>(4);
+
+    //OO update
+    //public java.util.List<Column> cols;// = new ArrayList<>(4);
+    public java.util.List<java.util.List<Column>> cols2 = new ArrayList<>(1);
 
     public Game(){
         // initialize a new game such that each column can store cards
+        cols2.add(new ArrayList<Column>(4));
+        for (int i = 0; i < 4; i++) {
+            cols2.get(0).add(new Column());
+        }
+        /*original
+        for (int i = 0; i < 4; i++){
+            cols.add(new ArrayList<Card>(4));
+        }*/
+        /*OO update
         for (int i = 0; i < 4; i++){
             cols.add(new Column());
-        }
+        }*/
         //this.dealFour();
     }
 
@@ -55,7 +68,7 @@ public class Game {
             for(int i = 0; i < 4; i++) {
                 Card temp = deck.getTopCard();
                 //Card temp = this.deck.get(this.deck.size()-1);// remove top card from deck
-                cols.get(i).addCard(temp);
+                cols2.get(0).get(i).addCard(temp);
                 //this.addCardToCol(i, temp);//add card to column
                 //this.deck.remove(temp);//remove top card from deck
             }
@@ -67,11 +80,11 @@ public class Game {
 
     public boolean remove(int columnNumber) {
         // remove the top card from the indicated column
-        if(cols.get(columnNumber).hasCards()/*columnHasCards(columnNumber)*/) {
+        if(cols2.get(0).get(columnNumber).hasCards()/*columnHasCards(columnNumber)*/) {
             for (int i = 0; i < 4; i++){
-                if(cols.get(i).peekTop().suit == cols.get(columnNumber).peekTop().suit
-                        && cols.get(i).peekTop().value > cols.get(columnNumber).peekTop().value) {
-                        cols.get(columnNumber).removeCard();
+                if(cols2.get(0).get(i).peekTop().suit == cols2.get(0).get(columnNumber).peekTop().suit
+                        && cols2.get(0).get(i).peekTop().value > cols2.get(0).get(columnNumber).peekTop().value) {
+                    cols2.get(0).get(columnNumber).removeCard();
                         return true;
                 }
                 /*if (this.cols.get(i).get(this.cols.get(i).size()-1).suit == this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1).suit &&
@@ -104,11 +117,11 @@ public class Game {
 
     public boolean move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        if (cols.get(columnFrom).hasCards()/*columnHasCards(columnFrom)*/) {
-            if (cols.get(columnTo).hasCards()/*columnHasCards(columnTo)*/ == false) {
-                Card temp = cols.get(columnFrom).getTop();
+        if (cols2.get(0).get(columnFrom).hasCards()/*columnHasCards(columnFrom)*/) {
+            if (cols2.get(0).get(columnTo).hasCards()/*columnHasCards(columnTo)*/ == false) {
+                Card temp = cols2.get(0).get(columnFrom).getTop();
                         //getTopCard(columnFrom); //get the top card
-                cols.get(columnTo).addCard(temp);
+                cols2.get(0).get(columnTo).addCard(temp);
                 return true;
                 //addCardToCol(columnTo, temp); //add it to the new column
                 //removeCardFromCol(columnFrom); //remove from the from column
@@ -119,11 +132,11 @@ public class Game {
 
     private void addCardToCol(int columnTo, Card cardToMove) {
         //this.cols.get(columnTo).add(cardToMove);
-        cols.get(columnTo).addCard(cardToMove);
+        cols2.get(0).get(columnTo).addCard(cardToMove);
     }
 
     private void removeCardFromCol(int colFrom) {
         //this.cols.get(colFrom).remove(this.cols.get(colFrom).size()-1);
-        cols.get(colFrom).removeCard();
+        cols2.get(0).get(colFrom).removeCard();
     }
 }
