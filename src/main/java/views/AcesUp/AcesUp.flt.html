@@ -3,7 +3,6 @@
 <title>Solitaire</title>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
-<link href="/assets/css/cardFile/cards.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
 </head>
 <!-- adding a comment-->
@@ -47,90 +46,83 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
     }).call(document.getElementById('helpBut'), event);
 });
 </script>
-<table>
-    <tr class="title">
-        <td>Column0</td>
-        <td>Column1</td>
-        <td>Column2</td>
-        <td>Column3</td>
-    </tr>
-
-    <tr><td class="columnOfCards" id="c0">
-        <div class="playingCards">
-			<ul class="cascade">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
-			</ul>
-			
-			</div>
-    </td>
-        <td class="columnOfCards" id="c1">
-            <div class="playingCards">
-			<ul class="cascade">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
-			</ul>
-			
-			</div>
-        </td>
-        <td class="columnOfCards" id="c2">
-            <div class="playingCards">
-			<ul class="cascade">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
-			</ul>
-			
-			</div>
-        </td>
-		
-        <td class="columnOfCards" id="c3">
-			<div class="playingCards">
-			<ul class="cascade">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
-			</ul>
-			
-			</div>
-        </td>
-		
-    </tr>
-</table>
 <div class="playingCards">
-<ul class="deck">
+<div class="deckContainer">
+	<ul class="deck">
 				<li class="card back">*</li>
 				<li class="card back">*</li>
 				<li class="card back">*</li>
 				<li class="card back">*</li>
 			</ul>
-			</div>
+	</div>
+<div class="colsContainer">
+			<ul class="cascade" id="c0">
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card back">*</li><!-- 
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li>
+				<li class="card back">*</li> -->
+			</ul>
+			
+	
+			<ul class="cascade" id="c1">
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card back">*</li>
+			</ul>
+			
+			<ul class="cascade" id="c2">
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card back">*</li>
+			</ul>
+			
+			<ul class="cascade" id="c3">
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card rank-7 spades">
+					<span class="rank">7</span>
+					<span class="suit">&spades;</span>
+				</li>
+				<li class="card back">*</li>
+			</ul>
+</div>
+
+
+	<div class="discardContainer">
+		<div class="card rank-7 spades">
+    
+		</div>
+	</div>
+</div>
 
 
 <!--<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>-->
