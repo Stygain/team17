@@ -134,9 +134,13 @@ public class Game {
                     return true;*/
 
                     Card temp = getTopCard(columnFrom);
-                    addCardToCol(columnTo, temp); //add it to the new column
-                    removeCardFromCol(columnFrom); //remove from the from column
-                    return true;
+
+                    if (temp.getValue() == 14) {
+
+                        addCardToCol(columnTo, temp); //add it to the new column
+                        removeCardFromCol(columnFrom); //remove from the from column
+                        return true;
+                    }
                 }
             }
         }
