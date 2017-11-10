@@ -94,12 +94,15 @@ public class Game {
 
     public boolean move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
-        if (columnHasCards(columnFrom)) {
-            if (columnHasCards(columnTo) == false) {
-                Card temp = getTopCard(columnFrom); //get the top card
-                addCardToCol(columnTo, temp); //add it to the new column
-                removeCardFromCol(columnFrom); //remove from the from column
-                return true;
+        System.out.println("calling move");
+        for (int i = 0; i < 4; i++) {
+            if (columnHasCards(columnFrom)) {
+                if (columnHasCards(i) == false) {
+                    Card temp = getTopCard(columnFrom); //get the top card
+                    addCardToCol(columnTo, temp); //add it to the new column
+                    removeCardFromCol(columnFrom); //remove from the from column
+                    return true;
+                }
             }
         }
         return false;

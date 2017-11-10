@@ -48,7 +48,11 @@ public class ApplicationController {
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
-        g.remove(colNumber);
+        boolean removed = false;
+        removed = g.remove(colNumber);
+        if (!removed){
+            removed = g.move(colNumber, 0);
+        }
         return Results.json().render(g);
     }
 

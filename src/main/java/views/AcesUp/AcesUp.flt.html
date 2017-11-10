@@ -58,52 +58,20 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 	</div>
 <div class="colsContainer">
 			<ul class="cascade" id="c0">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
+				
 			</ul>
 			
 	
 			<ul class="cascade" id="c1">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
+				
 			</ul>
 			
 			<ul class="cascade" id="c2">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
+				
 			</ul>
 			
 			<ul class="cascade" id="c3">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
+				
 			</ul>
 </div>
 
@@ -123,29 +91,22 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 <script>
 
 var cardColumns = document.getElementsByClassName("cascade");
+var deck = document.getElementById("deck");
 
 cardColumns[0].addEventListener("click", function(event) {
-		console.log("cardcols was clicked");
-		console.log("last child is " + cardColumns[0].lastChild);
 		removeCard(0);
-		cardColumns[0].removeChild(cardColumns[0].lastChild);
-		cardColumns[0].removeChild(cardColumns[0].lastChild);
 	});
 	cardColumns[1].addEventListener("click", function(event) {
 		removeCard(1);
-		cardColumns[1].removeChild(cardColumns[1].lastChild);
-		cardColumns[1].removeChild(cardColumns[1].lastChild);
 	});
 	cardColumns[2].addEventListener("click", function(event) {
 		removeCard(2);
-		cardColumns[2].removeChild(cardColumns[2].lastChild);
-		cardColumns[2].removeChild(cardColumns[2].lastChild);
 	});
 	cardColumns[3].addEventListener("click", function(event) {
 		removeCard(3);
-		cardColumns[3].removeChild(cardColumns[3].lastChild);
-		cardColumns[3].removeChild(cardColumns[3].lastChild);
 	});
+
+deck.addEventListener("click", dealCards);
 
 var game;
 
@@ -182,7 +143,8 @@ game = data;
 });
 
 
-$("#dealButton").click(function(){
+function dealCards(){
+console.log("dealCards called");
 $.ajax({
   type: "POST",
   url: "/dealGame",
@@ -193,11 +155,10 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
-});
+};
 
 
 function removeCard(colNumber){
-	console.log("calling removeCard on" + colNumber);
 $.ajax({
 type: "POST",
 url: "/removeCard/"+colNumber,
