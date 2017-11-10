@@ -55,7 +55,8 @@ public class Game {
             for(int i = 0; i < 4; i++) {
                 Card temp = deck.getTopCard();
                 //Card temp = this.deck.get(this.deck.size()-1);// remove top card from deck
-                this.addCardToCol(i, temp);//add card to column
+                cols.get(i).addCard(temp);
+                //this.addCardToCol(i, temp);//add card to column
                 //this.deck.remove(temp);//remove top card from deck
             }
         }
@@ -64,14 +65,14 @@ public class Game {
         }
     }
 
-    public void remove(int columnNumber) {
+    public boolean remove(int columnNumber) {
         // remove the top card from the indicated column
         if(cols.get(columnNumber).hasCards()/*columnHasCards(columnNumber)*/) {
             for (int i = 0; i < 4; i++){
                 if(cols.get(i).peekTop().suit == cols.get(columnNumber).peekTop().suit
                         && cols.get(i).peekTop().value > cols.get(columnNumber).peekTop().value) {
                         cols.get(columnNumber).removeCard();
-                        return;
+                        return true;
                 }
                 /*if (this.cols.get(i).get(this.cols.get(i).size()-1).suit == this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1).suit &&
                         this.cols.get(i).get(this.cols.get(i).size()-1).value > this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1).value) {
@@ -79,6 +80,7 @@ public class Game {
                 }*/
             }
         }
+        return false;
     }
 /*
     private boolean columnHasCards(int columnNumber) {
@@ -100,19 +102,19 @@ public class Game {
     }*/
 
 
-    public void move(int columnFrom, int columnTo) {
+    public boolean move(int columnFrom, int columnTo) {
         // remove the top card from the columnFrom column, add it to the columnTo column
         if (cols.get(columnFrom).hasCards()/*columnHasCards(columnFrom)*/) {
             if (cols.get(columnTo).hasCards()/*columnHasCards(columnTo)*/ == false) {
                 Card temp = cols.get(columnFrom).getTop();
                         //getTopCard(columnFrom); //get the top card
                 cols.get(columnTo).addCard(temp);
-
-
+                return true;
                 //addCardToCol(columnTo, temp); //add it to the new column
                 //removeCardFromCol(columnFrom); //remove from the from column
             }
         }
+        return false;
     }
 
     private void addCardToCol(int columnTo, Card cardToMove) {
