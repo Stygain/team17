@@ -45,10 +45,11 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
         }
     }).call(document.getElementById('helpBut'), event);
 });
+
 </script>
 <div class="playingCards">
 <div class="deckContainer">
-	<ul class="deck">
+	<ul class="deck" id="deck">
 				<li class="card back">*</li>
 				<li class="card back">*</li>
 				<li class="card back">*</li>
@@ -65,17 +66,7 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 					<span class="rank">7</span>
 					<span class="suit">&spades;</span>
 				</li>
-				<li class="card back">*</li><!-- 
 				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li> -->
 			</ul>
 			
 	
@@ -117,7 +108,7 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 </div>
 
 
-	<div class="discardContainer">
+	<div class="discardContainer" id="discard">
 		<div class="card rank-7 spades">
     
 		</div>
@@ -130,6 +121,31 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
 <script>
+
+var cardColumns = document.getElementsByClassName("cascade");
+
+cardColumns[0].addEventListener("click", function(event) {
+		console.log("cardcols was clicked");
+		console.log("last child is " + cardColumns[0].lastChild);
+		removeCard(0);
+		cardColumns[0].removeChild(cardColumns[0].lastChild);
+		cardColumns[0].removeChild(cardColumns[0].lastChild);
+	});
+	cardColumns[1].addEventListener("click", function(event) {
+		removeCard(1);
+		cardColumns[1].removeChild(cardColumns[1].lastChild);
+		cardColumns[1].removeChild(cardColumns[1].lastChild);
+	});
+	cardColumns[2].addEventListener("click", function(event) {
+		removeCard(2);
+		cardColumns[2].removeChild(cardColumns[2].lastChild);
+		cardColumns[2].removeChild(cardColumns[2].lastChild);
+	});
+	cardColumns[3].addEventListener("click", function(event) {
+		removeCard(3);
+		cardColumns[3].removeChild(cardColumns[3].lastChild);
+		cardColumns[3].removeChild(cardColumns[3].lastChild);
+	});
 
 var game;
 
@@ -161,6 +177,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 // Calls ApplicationController.gameGet()
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
+console.log(data);
 game = data;
 });
 
@@ -180,6 +197,7 @@ $.ajax({
 
 
 function removeCard(colNumber){
+	console.log("calling removeCard on" + colNumber);
 $.ajax({
 type: "POST",
 url: "/removeCard/"+colNumber,
