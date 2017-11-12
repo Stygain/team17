@@ -32,10 +32,11 @@ public class ApplicationController {
     }
     
     public Result gameGet(){
+        System.out.println("gameget");
         Game g = new Game();
         //System.out.println("I'm past the constructor");
-        g.deck.buildDeck();
-        g.deck.shuffle();
+        //g.deck.buildDeck();
+        //g.deck.shuffle();
         g.dealFour();
         //System.out.println("I'm at the return statement");
         return Results.json().render(g);

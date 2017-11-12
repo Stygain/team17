@@ -8,7 +8,10 @@ public class Deck implements Serializable {
 
     private java.util.List<Card> deck = new ArrayList<>(52);
 
-
+    public Deck(){
+        buildDeck();
+        shuffle();
+    }
     public int getSize() {
         return deck.size();
     }

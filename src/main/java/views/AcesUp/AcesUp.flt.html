@@ -49,7 +49,7 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 </script>
 <div class="playingCards">
 <div class="deckContainer">
-	<ul class="deck" id="deck">
+	<ul class="deck" id="dealButton">
 				<li class="card back">*</li>
 				<li class="card back">*</li>
 				<li class="card back">*</li>
@@ -87,7 +87,6 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 <script>
 
 var cardColumns = document.getElementsByClassName("cascade");
-var deck = document.getElementById("deck");
 
 cardColumns[0].addEventListener("click", function(event) {
 		removeCard(0);
@@ -102,7 +101,6 @@ cardColumns[0].addEventListener("click", function(event) {
 		removeCard(3);
 	});
 
-deck.addEventListener("click", dealCards);
 
 var game;
 
@@ -134,7 +132,7 @@ $( '.columnOfCards .cardLocation' ).html("");
 // Calls ApplicationController.gameGet()
 $.getJSON("http://localhost:8080/game", function( data ) {
 console.log(data);
-//display(data);
+display(data);
 game = data;
 });
 
@@ -147,8 +145,7 @@ function reRender(){
 }
 
 
-function dealCards(){
-reRender();
+$("#dealButton").click(function(){
 $.ajax({
   type: "POST",
   url: "/dealGame",
@@ -159,7 +156,7 @@ $.ajax({
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
-};
+});
 
 function generateCard(cardVal, cardSuit, column){
 var outputS = "<li class=\"card rank-" + cardVal + " " + cardSuit + "\"><span class=\"rank\">" + cardVal + "</span><span class=\"suit\">&" + cardSuit + ";</span></li>"

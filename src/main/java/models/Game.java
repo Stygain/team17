@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class Game {
 
-    public Deck deck = new Deck();
+    public Deck deck;
 
     //public java.util.List<Card> deck = new ArrayList<>();
 
@@ -21,6 +21,7 @@ public class Game {
     //public java.util.List<java.util.List<Column>> cols2 = new ArrayList<>(1);
 
     public Game(){
+        deck = new Deck();
         // initialize a new game such that each column can store cards
         /*cols2.add(new ArrayList<Column>(4));
         for (int i = 0; i < 4; i++) {
