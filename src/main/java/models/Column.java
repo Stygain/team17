@@ -9,7 +9,11 @@ import java.io.Serializable;
 public class Column {
 
     private int size;
-    private java.util.List<Card> column = new ArrayList<>();
+    private java.util.List<Card> column;
+
+    public Column(){
+        column = new ArrayList<>();
+    }
 
     public void addCard(Card newCard) {
 

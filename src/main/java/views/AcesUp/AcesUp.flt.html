@@ -45,10 +45,11 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
         }
     }).call(document.getElementById('helpBut'), event);
 });
+
 </script>
 <div class="playingCards">
 <div class="deckContainer">
-	<ul class="deck">
+	<ul class="deck" id="dealButton">
 				<li class="card back">*</li>
 				<li class="card back">*</li>
 				<li class="card back">*</li>
@@ -57,67 +58,25 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 	</div>
 <div class="colsContainer">
 			<ul class="cascade" id="c0">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li><!-- 
 				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li> -->
 			</ul>
 			
 	
 			<ul class="cascade" id="c1">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
+				
 			</ul>
 			
 			<ul class="cascade" id="c2">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
+				
 			</ul>
 			
 			<ul class="cascade" id="c3">
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card rank-7 spades">
-					<span class="rank">7</span>
-					<span class="suit">&spades;</span>
-				</li>
-				<li class="card back">*</li>
+				
 			</ul>
 </div>
 
 
-	<div class="discardContainer">
+	<div class="discardContainer" id="discard">
 		<div class="card rank-7 spades">
     
 		</div>
@@ -125,11 +84,23 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 </div>
 
 
-<!--<BR>Remove from: <button id="Remove1">Column1</button><button id="Remove2">Column2</button><button id="Remove3">Column3</button><button id="Remove4">Column4</button>-->
-
-<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
-
 <script>
+
+var cardColumns = document.getElementsByClassName("cascade");
+
+cardColumns[0].addEventListener("click", function(event) {
+		removeCard(0);
+	});
+	cardColumns[1].addEventListener("click", function(event) {
+		removeCard(1);
+	});
+	cardColumns[2].addEventListener("click", function(event) {
+		removeCard(2);
+	});
+	cardColumns[3].addEventListener("click", function(event) {
+		removeCard(3);
+	});
+
 
 var game;
 
@@ -161,9 +132,21 @@ $( '.columnOfCards .cardLocation' ).html("");
 // Calls ApplicationController.gameGet()
 $.getJSON("http://localhost:8080/game", function( data ) {
 console.log(data);
-//display(data);
+display(data);
 game = data;
+reRender();
 });
+
+function reRender(){
+	for (i = 0; i < 4; i++){
+		while (cardColumns[i].firstChild){
+			cardColumns[i].removeChild(cardColumns[i].firstChild);
+		}
+		for (x = 0; x < game.cols[i].length; x++){
+			generateCard(game.cols[i][x].value, game.cols[i][x].suit, i);
+		}	
+	}
+}
 
 
 $("#dealButton").click(function(){
@@ -180,15 +163,26 @@ $.ajax({
 });
 
 function generateCard(cardVal, cardSuit, column){
-var outputS = "<li class=\"card rank-" + cardVal + " " + cardSuit + "\"><span class=\"rank\">" + cardVal + "</span><span class=\"suit\">&" + cardSuit + ";</span></li>"
+cardSuit = cardSuit.toLowerCase();
+if (cardSuit == "diamonds")
+	cardSuit = "diams";
+if (cardVal == 11)
+	cardVal = "J";
+else if (cardVal == 12)
+	cardVal = "Q";
+else if (cardVal == 13)
+	cardVal = "K";
+else if (cardVal == 14)
+	cardVal = "A";
+var outputS = "<li class=\"card rank-" + cardVal.toString().toLowerCase() + " " + cardSuit + "\"><span class=\"rank\">" + cardVal + "</span><span class=\"suit\">&" + cardSuit + ";</span></li>"
 var colTo = "c" + column;
 var column = document.getElementById(colTo);
 column.innerHTML = column.innerHTML + outputS;
 return outputS;
 }
-console.log(generateCard(4, "diams", 2));
 
 function removeCard(colNumber){
+
 $.ajax({
 type: "POST",
 url: "/removeCard/"+colNumber,
