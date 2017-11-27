@@ -1,23 +1,14 @@
-<head>
-<meta charset="utf-8">
-<title>Solitaire</title>
+<html>
 
 <link href="/assets/css/AcesUp.css" rel="stylesheet">
 <script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
-</head>
-<!-- adding a comment-->
 
 <body>
+
 <header>
-
-    <a href="#"><h1 class="site-title"><center><b>Aces Up Solitaire</b></center></h1></a>
-
-    <nav class="navbar">
-        <ul class="navlist">
-            <li class="navitem navlink"><a href="#">New Game</a></li>
-        </ul>
-    </nav>
+<a href="#"><h1 class="site-title"><center><b>Aces Up Solitaire</b></center></h1></a>
 </header>
+
 <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519660-164_QuestionMark-128.png" id="helpBut" />
 <div id="infobox">
     <h4>General Rules:</h4>
@@ -47,108 +38,166 @@ document.getElementById('helpBut').addEventListener("click", function(event) {
 });
 
 </script>
-<div class="playingCards">
-<div class="deckContainer">
-	<ul class="deck" id="dealButton">
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-				<li class="card back">*</li>
-			</ul>
-	</div>
-<div class="colsContainer">
-			<ul class="cascade" id="c0">
-				<li class="card back">*</li>
-			</ul>
-			
-	
-			<ul class="cascade" id="c1">
-				
-			</ul>
-			
-			<ul class="cascade" id="c2">
-				
-			</ul>
-			
-			<ul class="cascade" id="c3">
-				
-			</ul>
-</div>
-
-
-	<div class="discardContainer" id="discard">
-		<div class="card rank-7 spades">
+<center>
+<table>
     
-		</div>
-	</div>
-</div>
+
+    <tr><td class="columnOfCards" id="c0">
+        <table>
+            <tr><td class="cardLocation l0"></td></tr>
+            <tr><td class="cardLocation l1"></td></tr>
+            <tr><td class="cardLocation l2"></td></tr>
+            <tr><td class="cardLocation l3"></td></tr>
+            <tr><td class="cardLocation l4"></td></tr>
+            <tr><td class="cardLocation l5"></td></tr>
+            <tr><td class="cardLocation l6"></td></tr>
+            <tr><td class="cardLocation l7"></td></tr>
+            <tr><td class="cardLocation l8"></td></tr>
+            <tr><td class="cardLocation l9"></td></tr>
+            <tr><td class="cardLocation l10"></td></tr>
+            <tr><td class="cardLocation l11"></td></tr>
+            <tr><td class="cardLocation l12"></td></tr>
+            <tr><td class="cardLocation l13"></td></tr>
+        </table>
+		<button id="Remove1">Remove</button>
+    </td>
+        <td class="columnOfCards" id="c1">
+            <table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+                <tr><td class="cardLocation l11"></td></tr>
+                <tr><td class="cardLocation l12"></td></tr>
+                <tr><td class="cardLocation l13"></td></tr>
+            </table>
+			<button id="Remove2">Remove</button>
+        </td>
+        <td class="columnOfCards" id="c2">
+            <table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+                <tr><td class="cardLocation l11"></td></tr>
+                <tr><td class="cardLocation l12"></td></tr>
+                <tr><td class="cardLocation l13"></td></tr>
+            </table>
+			<button id="Remove3">Remove</button>
+        </td>
+        <td class="columnOfCards" id="c3">
+            <table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+                <tr><td class="cardLocation l11"></td></tr>
+                <tr><td class="cardLocation l12"></td></tr>
+                <tr><td class="cardLocation l13"></td></tr>
+            </table>
+			<button id="Remove4">Remove</button>
+        </td>
+    </tr>
+	
+<button id="dealButton">Deal</button>
+</table>
 
 
+<BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
+
+</center>
 <script>
-
-var cardColumns = document.getElementsByClassName("cascade");
-
-cardColumns[0].addEventListener("click", function(event) {
-		removeCard(0);
-	});
-	cardColumns[1].addEventListener("click", function(event) {
-		removeCard(1);
-	});
-	cardColumns[2].addEventListener("click", function(event) {
-		removeCard(2);
-	});
-	cardColumns[3].addEventListener("click", function(event) {
-		removeCard(3);
-	});
-
-
 var game;
 
+//deckType 0 for regular, 1 for spanish
+var deckType = 0;
 function display(game) {
 console.log(game);
-
 $( '.columnOfCards .cardLocation' ).html("");
-
-    $.each(game.cols[0], function( key, val ) {
-        $( '#c0 .l'+key ).html(val.value + val.suit);
+ $.each(game.columns[0].cards, function( key, val ) {
+        $( '#c0 .l'+key ).html(convertToCard(val.value, val.suit));
     });
-
- $.each(game.cols[1], function( key, val ) {
-        $( '#c1 .l'+key ).html(val.value + val.suit);
+ $.each(game.columns[1].cards, function( key, val ) {
+        $( '#c1 .l'+key ).html(convertToCard(val.value, val.suit));
     });
-
- $.each(game.cols[2], function( key, val ) {
-        $( '#c2 .l'+key ).html(val.value + val.suit);
+ $.each(game.columns[2].cards, function( key, val ) {
+        $( '#c2 .l'+key ).html(convertToCard(val.value, val.suit));
     });
-
- $.each(game.cols[3], function( key, val ) {
-        $( '#c3 .l'+key ).html(val.value + val.suit);
+ $.each(game.columns[3].cards, function( key, val ) {
+        $( '#c3 .l'+key ).html(convertToCard(val.value, val.suit));
     });
-
-
-
 }
 
-// Calls ApplicationController.gameGet()
-$.getJSON("http://localhost:8080/game", function( data ) {
-console.log(data);
-display(data);
-game = data;
-reRender();
-});
-
-function reRender(){
-	for (i = 0; i < 4; i++){
-		while (cardColumns[i].firstChild){
-			cardColumns[i].removeChild(cardColumns[i].firstChild);
-		}
-		for (x = 0; x < game.cols[i].length; x++){
-			generateCard(game.cols[i][x].value, game.cols[i][x].suit, i);
-		}	
+function convertToCard(value, suit){
+	var returnVal;
+	var returnSuit;
+	var color;
+	
+	suit = suit.toLowerCase();
+	returnVal = value;
+	
+	switch (suit){
+		case "hearts":
+			returnSuit = "&hearts";
+			color = "red";
+			break;
+		case "spades":
+			returnSuit = "&spades";
+			color = "black";
+			break;
+		case "diamonds":
+			returnSuit = "&diams";
+			color = "red";
+			break;
+		case "clubs":
+			returnSuit = "&clubs";
+			color = "black";
+			break;
 	}
+	if (deckType == 0)
+	switch (value){
+		case 11:
+			returnVal = "J";
+			break;
+		case 12:
+			returnVal = "Q";
+			break;
+		case 13:
+			returnVal = "K";
+			break;
+		case 14:
+			returnVal = "A";
+			break;
+	}
+	
+	return "<font color=" + color + ">" + returnVal + " " + returnSuit + ";</font>";
 }
 
-
+$.getJSON("http://localhost:8080/game", function( data ) {
+game = data;
+display(game);
+});
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
@@ -156,51 +205,24 @@ $.ajax({
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        display(game);},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
 });
-
-function generateCard(cardVal, cardSuit, column){
-cardSuit = cardSuit.toLowerCase();
-if (cardSuit == "diamonds")
-	cardSuit = "diams";
-if (cardVal == 11)
-	cardVal = "J";
-else if (cardVal == 12)
-	cardVal = "Q";
-else if (cardVal == 13)
-	cardVal = "K";
-else if (cardVal == 14)
-	cardVal = "A";
-var outputS = "<li class=\"card rank-" + cardVal.toString().toLowerCase() + " " + cardSuit + "\"><span class=\"rank\">" + cardVal + "</span><span class=\"suit\">&" + cardSuit + ";</span></li>"
-var colTo = "c" + column;
-var column = document.getElementById(colTo);
-column.innerHTML = column.innerHTML + outputS;
-return outputS;
-}
-
 function removeCard(colNumber){
-
 $.ajax({
 type: "POST",
 url: "/removeCard/"+colNumber,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
-display(data);},
+display(game);},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
-
 }
-
-
 $("#Remove1").click(function(){
-    removeCard(0);
-});
-$("#NOTRemove1").click(function(){
     removeCard(0);
 });
 $("#Remove2").click(function(){
@@ -212,8 +234,6 @@ $("#Remove3").click(function(){
 $("#Remove4").click(function(){
     removeCard(3);
 });
-
-
 $("#moveButton").click(function(){
 var colFrom = $("#from_col").val();
 var colTo = $("#to_col").val();
@@ -223,13 +243,11 @@ $.ajax({
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        display(game);},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
 });
-
-
 </script>
 
 
