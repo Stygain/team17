@@ -1,160 +1,86 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
-/**
- * Assignment 1: Each of the blank methods below require implementation to get AcesUp to build/run
- */
 public class Game {
 
-    public Deck deck;
-
-    //public java.util.List<Card> deck = new ArrayList<>();
-
-    //old
-    public java.util.List<java.util.List<Card>> cols = new ArrayList<>(4);
-
-    //OO update
-    //public java.util.List<Column> cols;// = new ArrayList<>(4);
-    //public java.util.List<java.util.List<Column>> cols2 = new ArrayList<>(1);
+    public Deck deck = new Deck();
+    public java.util.List<Column> columns = new ArrayList<>();
 
     public Game(){
-        deck = new Deck();
-        // initialize a new game such that each column can store cards
-        /*cols2.add(new ArrayList<Column>(4));
-        for (int i = 0; i < 4; i++) {
-            cols2.get(0).add(new Column());
-        }*/
-        //original
-        for (int i = 0; i < 4; i++){
-            cols.add(new ArrayList<Card>(4));
-        }
-        /*OO update
-        for (int i = 0; i < 4; i++){
-            cols.add(new Column());
-        }*/
-        //this.dealFour();
+        columns.add(new Column(1));
+        columns.add(new Column(2));
+        columns.add(new Column(3));
+        columns.add(new Column(4));
     }
-
-//    public void buildDeck() {
-//        for(int i = 2; i < 15; i++){
-//            deck.add(new Card(i,Suit.Clubs));
-//            deck.add(new Card(i,Suit.Hearts));
-//            deck.add(new Card(i,Suit.Diamonds));
-//            deck.add(new Card(i,Suit.Spades));
-//        }
-//    }
-
-//    public void shuffle() {
-//        int randomVal;
-//        Card currCard;
-//
-//        Card newCard;
-//        for (int i = 0; i < deck.size(); i++){
-//            randomVal = (int) (Math.random() * 52);
-//            currCard = deck.get(randomVal);
-//            newCard = new Card(currCard.getValue(), currCard.getSuit());
-//            deck.remove(randomVal);
-//            deck.add(newCard);
-//        }
-//        // shuffles the deck so that it is random
-//    }
 
     public void dealFour() {
-        // remove the top card from the deck and add it to a column; repeat for each of the four columns
-        int cards = deck.getSize();
-        if (cards >= 4){
-            for(int i = 0; i < 4; i++) {
-                //OO update
-                //Card temp = deck.getTopCard();
-
-                //original
-//                Card temp = this.deck.get(this.deck.size()-1);// remove top card from deck
-//                this.addCardToCol(i, temp);//add card to column
-//                this.deck.remove(temp);//remove top card from deck
-
-                Card temp = deck.getTopCard();
-                this.addCardToCol(i, temp);
-
-                //OO update
-                // cols2.get(0).get(i).addCard(temp);
-            }
-        }
-        else{
-            System.out.println("Out of Cards");
+        ArrayList<Card> deal = deck.dealFour();
+        for (int i = 0; i < deal.size(); i++) {
+            Card c = deal.get(i);
+            columns.get(i).cards.add(c);
         }
     }
 
-    public boolean remove(int columnNumber) {
-        // remove the top card from the indicated column
+    //customDeal to setup game for testing purposes (i.e. shuffled cards are random and hard to test)
+    public void customDeal(int c1, int c2, int c3, int c4) {
+        columns.get(0).cards.add(deck.cards.get(c1));
+        deck.cards.remove(c1);
+        columns.get(1).cards.add(deck.cards.get(c2));
+        deck.cards.remove(c2);
+        columns.get(2).cards.add(deck.cards.get(c3));
+        deck.cards.remove(c3);
+        columns.get(3).cards.add(deck.cards.get(c4));
+        deck.cards.remove(c4);
+    }
+
+    public void remove(int columnNumber) {
         if(columnHasCards(columnNumber)) {
-            for (int i = 0; i < 4; i++){
-                /*if(cols2.get(0).get(i).peekTop().suit == cols2.get(0).get(columnNumber).peekTop().suit
-                        && cols2.get(0).get(i).peekTop().value > cols2.get(0).get(columnNumber).peekTop().value) {
-                    cols2.get(0).get(columnNumber).removeCard();
-                        return true;
-                }*/
-                if (this.cols.get(i).get(this.cols.get(i).size()-1).suit == this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1).suit &&
-                        this.cols.get(i).get(this.cols.get(i).size()-1).value > this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1).value) {
-                    removeCardFromCol(columnNumber);
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean columnHasCards(int columnNumber) {
-        // check indicated column for number of cards; if no cards return false, otherwise return true
-        //OO update
-        /*if(cols.get(columnNumber).hasCards()) {
-            return true;
-        }
-        return false;*/
-        if (this.cols.get(columnNumber).isEmpty()) {
-            return false;
-        }
-        return true;
-    }
-
-
-    private Card getTopCard(int columnNumber) {
-        return this.cols.get(columnNumber).get(this.cols.get(columnNumber).size()-1);
-    }
-
-
-    public boolean move(int columnFrom, int columnTo) {
-        // remove the top card from the columnFrom column, add it to the columnTo column
-        if (/*cols2.get(0).get(columnFrom).hasCards()*/columnHasCards(columnFrom)) {
+            Card c = getTopCard(columnNumber);
+            boolean removeCard = false;
             for (int i = 0; i < 4; i++) {
-                if (/*cols2.get(0).get(columnTo).hasCards()*/columnHasCards(i) == false) {
-                    /*Card temp = cols2.get(0).get(columnFrom).getTop();
-                            //getTopCard(columnFrom); //get the top card
-                    cols2.get(0).get(columnTo).addCard(temp);
-                    return true;*/
-
-                    Card temp = getTopCard(columnFrom);
-
-                    if (temp.getValue() == 14) {
-
-                        addCardToCol(columnTo, temp); //add it to the new column
-                        removeCardFromCol(columnFrom); //remove from the from column
-                        return true;
+                if (i != columnNumber) {
+                    if (columnHasCards(i)) {
+                        Card compare = getTopCard(i);
+                        if (compare.getSuit() == c.getSuit()) {
+                            if (compare.getValue() > c.getValue()) {
+                                removeCard = true;
+                            }
+                        }
                     }
                 }
             }
+            if (removeCard) {
+                this.columns.get(columnNumber).cards.remove(this.columns.get(columnNumber).cards.size() - 1);
+            }
+        }
+    }
+
+    private boolean columnHasCards(int columnNumber) {
+        if (this.columns.get(columnNumber).cards.size()>0) {
+            return true;
         }
         return false;
     }
 
-    public void addCardToCol(int columnTo, Card cardToMove) {
-        this.cols.get(columnTo).add(cardToMove);
-        //cols2.get(0).get(columnTo).addCard(cardToMove);
+    private Card getTopCard(int columnNumber) {
+        return this.columns.get(columnNumber).cards.get(this.columns.get(columnNumber).cards.size()-1);
+    }
+
+
+    public void move(int columnFrom, int columnTo) {
+        Card cardToMove = getTopCard(columnFrom);
+        if (cardToMove.getValue() == 14 && !columnHasCards(columnTo)) {
+            this.removeCardFromCol(columnFrom);
+            this.addCardToCol(columnTo, cardToMove);
+        }
+    }
+
+    private void addCardToCol(int columnTo, Card cardToMove) {
+        columns.get(columnTo).cards.add(cardToMove);
     }
 
     private void removeCardFromCol(int colFrom) {
-        this.cols.get(colFrom).remove(this.cols.get(colFrom).size()-1);
-        //cols2.get(0).get(colFrom).removeCard();
+        this.columns.get(colFrom).cards.remove(this.columns.get(colFrom).cards.size()-1);
     }
 }
