@@ -21,6 +21,10 @@ tr{
 width:500px;
 }
 
+input {
+	width: 50px;
+}
+
 #helpBut {
 width: 20px;
 height: 20px;
@@ -43,7 +47,7 @@ margin-top:5px;
 }
 
 td{
-width:100px;
+width:70px;
 height:20px;
 text-align:center;
 }
@@ -53,8 +57,9 @@ font-weight: bold;
 }
 
 .cardLocation{
-width: 100px;
+width: 70px;
 background-color:#F0F0F0;
+border: 1px solid black;
 }
 .navbar {
   background-color: #fff;
