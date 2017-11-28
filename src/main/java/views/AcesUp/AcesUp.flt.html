@@ -7,10 +7,18 @@
 
 <header>
 <a href="#"><h1 class="site-title"><center><b>Aces Up Solitaire</b></center></h1></a>
+<nav class="navbar">
+	<center>
+        <ul class="navlist">
+            <li class="navitem navlink"><button id="newStG">New Standard Game</button></li>
+			<li class="navitem navlink"><button id="newSpG">New Spanish Game</button></li>
+        </ul>
+		</center>
+    </nav>
 </header>
 
 <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519660-164_QuestionMark-128.png" id="helpBut" />
-<div id="infobox">
+<div id="infobox" display="none">
     <h4>General Rules:</h4>
     <ol>
         <li>Deal cards with the deal button</li>
@@ -26,10 +34,14 @@
     </ul>
 </div>
 <script type="text/javascript">
+var x = document.getElementById('infobox');
+x.style.display = "none";
 document.getElementById('helpBut').addEventListener("click", function(event) {
     (function(event) {
-        var x = document.getElementById('infobox');
+        
+		console.log("display is " + x.style.display);
         if (x.style.display === "none") {
+			console.log("converting to block");
             x.style.display = "block";
         } else {
             x.style.display = "none";
@@ -149,7 +161,44 @@ $( '.columnOfCards .cardLocation' ).html("");
     });
 }
 
+function newStandardGame(){
+deckType = 0;
+console.log("calling newStandardGame");
+$.ajax({
+type: "POST",
+url: "/newStandardGame",
+data: JSON.stringify(game),
+success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+game = data;
+display(game);},
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+});
+}
+
+function newSpanishGame(){
+console.log("calling newSpanishGame");
+deckType = 1;
+$.ajax({
+type: "POST",
+url: "/newSpanishGame",
+data: JSON.stringify(game),
+success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+game = data;
+display(game);},
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+});
+}
+
+document.getElementById("newStG").addEventListener('click', newStandardGame);
+document.getElementById("newSpG").addEventListener('click', newSpanishGame);
+
+//$("#newStG").click(newStandardGame());
+//$("#newSpG").click(newSpanishGame());
+
 function convertToCard(value, suit){
+	console.log("calling convertToCard");
 	var returnVal;
 	var returnSuit;
 	var color;
@@ -174,8 +223,20 @@ function convertToCard(value, suit){
 			returnSuit = "&clubs";
 			color = "black";
 			break;
+		case "coins":
+			returnSuit = "&otimes"
+			color = "gold";
+			break;
+		case "cups":
+			returnSuit = "&cup";
+			color = "black";
+			break;
+		case "swords":
+			returnSuit = "&dagger";
+			color = "gold";
+			break;
 	}
-	if (deckType == 0)
+	if (deckType == 0){
 	switch (value){
 		case 11:
 			returnVal = "J";
@@ -189,6 +250,21 @@ function convertToCard(value, suit){
 		case 14:
 			returnVal = "A";
 			break;
+	}
+	}
+	else {
+		switch (value){
+			case 10:
+				returnVal = "J";
+				break;
+			case 11:
+				returnVal = "Q";
+				break;
+			case 12:
+				returnVal = "K";
+				break;
+			
+		}
 	}
 	
 	return "<font color=" + color + ">" + returnVal + " " + returnSuit + ";</font>";
