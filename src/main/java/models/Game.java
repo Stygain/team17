@@ -56,14 +56,14 @@ public class Game {
         }
     }
 
-    private boolean columnHasCards(int columnNumber) {
+    boolean columnHasCards(int columnNumber) {
         if (this.columns.get(columnNumber).cards.size()>0) {
             return true;
         }
         return false;
     }
 
-    private Card getTopCard(int columnNumber) {
+    Card getTopCard(int columnNumber) {
         return this.columns.get(columnNumber).cards.get(this.columns.get(columnNumber).cards.size()-1);
     }
 
