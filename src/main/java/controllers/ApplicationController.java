@@ -33,11 +33,13 @@ public class ApplicationController {
 
     public Result standardPost(Context context, Game g){
         System.out.println("Server got a request for a new standard Game");
+        g.newGame(0);
         return Results.json().render(g);
     }
 
     public Result spanishPost(Context context, Game g){
         System.out.println("Server got a request for a new spanish Game");
+        g.newGame(1);
         return Results.json().render(g);
     }
 
