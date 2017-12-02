@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
 
-    public Deck deck = new Deck();
+    public GeneralDeck deck = new SpanishDeck();
     public java.util.List<Column> columns = new ArrayList<>();
 
     public Game(){
@@ -38,6 +38,7 @@ public class Game {
         if(columnHasCards(columnNumber)) {
             Card c = getTopCard(columnNumber);
             boolean removeCard = false;
+            int jokerCard = -1;
             for (int i = 0; i < 4; i++) {
                 if (i != columnNumber) {
                     if (columnHasCards(i)) {
@@ -46,12 +47,19 @@ public class Game {
                             if (compare.getValue() > c.getValue()) {
                                 removeCard = true;
                             }
+                        } else if(compare.getValue() == 0) {
+                            jokerCard = i;
                         }
                     }
                 }
             }
             if (removeCard) {
                 this.columns.get(columnNumber).cards.remove(this.columns.get(columnNumber).cards.size() - 1);
+            } else if(jokerCard != -1){
+
+                removeCardFromCol(columnNumber);
+                removeCardFromCol(jokerCard);
+
             }
         }
     }
@@ -83,4 +91,32 @@ public class Game {
     private void removeCardFromCol(int colFrom) {
         this.columns.get(colFrom).cards.remove(this.columns.get(colFrom).cards.size()-1);
     }
+
+    public void newGame(int deckType) {
+
+        GeneralDeck newDeck;
+
+        if(deckType == 0) { //standard deck
+
+            newDeck = new Deck();
+
+        }
+        else { //spanish deck
+
+            newDeck = new SpanishDeck();
+
+        }
+
+        for (int i = 0; i < 4; i++) {
+            while (columnHasCards(i)) {
+                removeCardFromCol(i);
+            }
+        }
+
+        this.deck = newDeck;
+        this.deck.shuffle();
+        this.dealFour();
+
+    }
+
 }
