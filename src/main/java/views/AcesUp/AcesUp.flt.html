@@ -245,6 +245,10 @@ function convertToCard(value, suit){
 			returnSuit = "&dagger";
 			color = "gold";
 			break;
+		case "jokers":
+			returnSuit = "&image";
+			color = "green";
+			break;
 	}
 	if (deckType == 0){
 	switch (value){
@@ -273,7 +277,9 @@ function convertToCard(value, suit){
 			case 12:
 				returnVal = "K";
 				break;
-			
+			case 0:
+				returnVal = "";
+				break;
 		}
 	}
 	
